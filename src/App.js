@@ -5,6 +5,7 @@ import "./App.css";
 
 import LandingPage from "./views/LandingPage";
 import ImageInput from "./views/ImageInput";
+import VideoInput from "./views/VideoInput";
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
           <div className="route">
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/photo" component={ImageInput} />
+            <Route exact path="/camera" component={VideoInput} />
           </div>
         </Router>
       </div>

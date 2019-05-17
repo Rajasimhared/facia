@@ -17,7 +17,8 @@ const INIT_STATE = {
   fullDesc: null,
   detections: null,
   descriptors: null,
-  match: null
+  match: null,
+  expression: null
 };
 
 class ImageInput extends Component {
@@ -38,7 +39,8 @@ class ImageInput extends Component {
         this.setState({
           fullDesc,
           detections: fullDesc.map(fd => fd.detection),
-          descriptors: fullDesc.map(fd => fd.descriptor)
+          descriptors: fullDesc.map(fd => fd.descriptor),
+          expressions: fullDesc.map(fd => fd.expressions)
         });
       }
     });
@@ -65,8 +67,7 @@ class ImageInput extends Component {
   };
 
   render() {
-    const { imageURL, detections, match } = this.state;
-
+    const { imageURL, detections, match, expressions } = this.state;
     let drawBox = null;
     if (!!detections) {
       drawBox = detections.map((detection, i) => {
@@ -91,7 +92,7 @@ class ImageInput extends Component {
                   style={{
                     backgroundColor: "blue",
                     border: "solid",
-                    borderColor: "blue",
+                    borderColor: "green",
                     width: _W,
                     marginTop: 0,
                     color: "#fff",
@@ -117,7 +118,7 @@ class ImageInput extends Component {
         />
         <div style={{ position: "relative" }}>
           <div style={{ position: "absolute" }}>
-            <img src={imageURL} alt="imageURL" />
+            <img src={imageURL} alt="imageURL" id="default-face" />
           </div>
           {!!drawBox ? drawBox : null}
         </div>
