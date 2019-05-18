@@ -5,7 +5,7 @@ import {
   getFullFaceDescription,
   createMatcher
 } from "../../api/face";
-
+import DrawBox from "../../components/DrawBox";
 import testImg from "../../img/rajasimha.jpg";
 
 // Import face profile
@@ -68,46 +68,6 @@ class ImageInput extends Component {
 
   render() {
     const { imageURL, detections, match, expressions } = this.state;
-    let drawBox = null;
-    if (!!detections) {
-      drawBox = detections.map((detection, i) => {
-        let _H = detection.box.height;
-        let _W = detection.box.width;
-        let _X = detection.box._x;
-        let _Y = detection.box._y;
-        return (
-          <div key={i}>
-            <div
-              style={{
-                position: "absolute",
-                border: "solid",
-                borderColor: "blue",
-                height: _H,
-                width: _W,
-                transform: `translate(${_X}px,${_Y}px)`
-              }}
-            >
-              {!!match && !!match[i] ? (
-                <p
-                  style={{
-                    backgroundColor: "blue",
-                    border: "solid",
-                    borderColor: "green",
-                    width: _W,
-                    marginTop: 0,
-                    color: "#fff",
-                    transform: `translate(-3px,${_H}px)`
-                  }}
-                >
-                  {match[i]._label}
-                </p>
-              ) : null}
-            </div>
-          </div>
-        );
-      });
-    }
-
     return (
       <div>
         <input
@@ -120,7 +80,11 @@ class ImageInput extends Component {
           <div style={{ position: "absolute" }}>
             <img src={imageURL} alt="imageURL" id="default-face" />
           </div>
-          {!!drawBox ? drawBox : null}
+          <DrawBox
+            detections={detections}
+            match={match}
+            expressions={expressions}
+          />
         </div>
       </div>
     );
