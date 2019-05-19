@@ -1,6 +1,6 @@
 import React from "react";
 
-const DrawBox = ({ detections, match, expressions }) => {
+const DrawBox = ({ detections, match, expressions, expression, value }) => {
   let drawBox = null;
   if (!!detections) {
     drawBox = detections.map((detection, i) => {
@@ -33,6 +33,8 @@ const DrawBox = ({ detections, match, expressions }) => {
                 }}
               >
                 {match[i]._label}
+                <br />
+                {expression} : {value.toFixed(2)}
               </p>
             ) : null}
           </div>

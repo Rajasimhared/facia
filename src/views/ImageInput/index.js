@@ -36,6 +36,18 @@ class ImageInput extends Component {
   handleImage = async (image = this.state.imageURL) => {
     await getFullFaceDescription(image).then(fullDesc => {
       if (!!fullDesc) {
+        if (fullDesc.length !== 0) {
+          let expression = fullDesc[0].expressions;
+          let key,
+            value = 0;
+          Object.keys(expression).forEach(e => {
+            if (expression[e] > value) {
+              key = e;
+              value = expression[e];
+            }
+          });
+          this.setState({ expression: key, value });
+        }
         this.setState({
           fullDesc,
           detections: fullDesc.map(fd => fd.detection),
@@ -67,7 +79,14 @@ class ImageInput extends Component {
   };
 
   render() {
-    const { imageURL, detections, match, expressions } = this.state;
+    const {
+      imageURL,
+      detections,
+      match,
+      expressions,
+      expression,
+      value
+    } = this.state;
     return (
       <div>
         <input
@@ -81,6 +100,8 @@ class ImageInput extends Component {
             <img src={imageURL} alt="imageURL" id="default-face" />
           </div>
           <DrawBox
+            expression={expression}
+            value={value}
             detections={detections}
             match={match}
             expressions={expressions}

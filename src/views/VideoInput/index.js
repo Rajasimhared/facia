@@ -69,6 +69,18 @@ class VideoInput extends Component {
         this.webcam.current.getScreenshot(),
         inputSize
       ).then(fullDesc => {
+        if (fullDesc.length !== 0) {
+          let expression = fullDesc[0].expressions;
+          let key,
+            value = 0;
+          Object.keys(expression).forEach(e => {
+            if (expression[e] > value) {
+              key = e;
+              value = expression[e];
+            }
+          });
+          this.setState({ expression: key, value });
+        }
         if (!!fullDesc) {
           this.setState({
             expressions: fullDesc.map(fd => fd.expressions),
@@ -88,7 +100,14 @@ class VideoInput extends Component {
   };
 
   render() {
-    const { detections, match, facingMode, expressions } = this.state;
+    const {
+      detections,
+      match,
+      facingMode,
+      expressions,
+      expression,
+      value
+    } = this.state;
     let videoConstraints = null;
     let camera = "";
     if (!!facingMode) {
@@ -103,11 +122,6 @@ class VideoInput extends Component {
         camera = "Back";
       }
     }
-    // if (expressions && expressions.length !== 0) {
-    //   // let expression = Object.values(expressions[0]);
-    //   // expression = Math.max(...expression);
-    //   console.log(expressions[0]);
-    // }
 
     return (
       <div
@@ -139,6 +153,8 @@ class VideoInput extends Component {
               </div>
             ) : null}
             <DrawBox
+              expression={expression}
+              value={value}
               detections={detections}
               match={match}
               expressions={expressions}
