@@ -11,6 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="heading">Facia</div>
         <Router history={createHistory()}>
           <div className="route">
             <Route exact path="/" component={LandingPage} />

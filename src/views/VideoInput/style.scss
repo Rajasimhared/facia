@@ -1,0 +1,11 @@
+.video-input {
+  display: flex;
+}
+
+.camera {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  right: 5%;
+}
