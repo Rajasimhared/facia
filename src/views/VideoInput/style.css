@@ -1,9 +1,27 @@
 .video-input {
-  display: flex; }
+  display: flex;
+  justify-content: space-around; }
 
 .camera {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;
   right: 5%; }
+
+.neutral {
+  color: #1fabf1; }
+
+.sad {
+  color: #1f0d0d; }
+
+.happy {
+  color: #f1491f; }
+
+.surprised {
+  color: #e01a8e; }
+
+.fear {
+  color: #752323; }
+
+.angry {
+  color: #2d7d74; }

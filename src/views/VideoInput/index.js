@@ -67,37 +67,40 @@ class VideoInput extends Component {
     switch (expression) {
       case "neutral":
         return (
-          <div>
+          <div className="neutral">
             <h2>Don't worry your life is awesome!</h2>
+            <h2>Get some energy folks</h2>
+            <h2>You are doing good.</h2>
           </div>
         );
       case "sad":
         return (
-          <div>
+          <div className="sad">
             <h2>Life is all about ups & downs chill!!</h2>
+            <h2>Don't lose hopes stand until the last stands!</h2>
           </div>
         );
       case "happy":
         return (
-          <div>
+          <div className="happy">
             <h2>Keep this smile on your face!!</h2>
           </div>
         );
       case "surprised":
         return (
-          <div>
+          <div className="surprised">
             <h2>Surprise is the greatest gift which life can grant us!</h2>
           </div>
         );
       case "fear":
         return (
-          <div>
+          <div className="fear">
             <h2>He who has overcome his fears will truly be free.</h2>
           </div>
         );
       case "angry":
         return (
-          <div>
+          <div className="angry">
             <h2>
               Reactions come from the mind, responses come from the heart.
             </h2>
